@@ -71,7 +71,10 @@ class SshHelper {
    * @throws \Exception
    */
   protected function sendCommandViaSsh($environment, $command, $print_output): Process {
-    $this->localMachineHelper->setIsTty(TRUE);
+    if (empty(getenv('NO_TTY'))) {
+      $this->localMachineHelper->setIsTty(TRUE);
+    }
+
     $command = array_values($this->getSshCommand($environment, $command));
 
     return $this->localMachineHelper->execute($command, $this->getOutputCallback(), NULL, $print_output, NULL);

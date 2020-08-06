@@ -317,7 +317,7 @@ EOT
    * @throws \Acquia\Cli\Exception\AcquiaCliException
    * @throws \Exception
    */
-  protected function uploadSshKeyToCloud(IdeResponse $ide, string $public_ssh_key_filepath): void {
+  protected function uploadSshKeyToCloud($ide, string $public_ssh_key_filepath): void {
     $return_code = $this->executeAcliCommand('ssh-key:upload', [
       '--label' => $this::getIdeSshKeyLabel($ide),
       '--filepath' => $public_ssh_key_filepath,

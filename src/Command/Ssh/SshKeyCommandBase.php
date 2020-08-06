@@ -26,7 +26,7 @@ abstract class SshKeyCommandBase extends CommandBase {
    *
    * @return string
    */
-  public static function getIdeSshKeyLabel(IdeResponse $ide): string {
+  public static function getIdeSshKeyLabel($ide): string {
     return self::normalizeSshKeyLabel('IDE_' . $ide->label . '_' . $ide->uuid);
   }
 
