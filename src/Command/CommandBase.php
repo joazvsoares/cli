@@ -936,8 +936,7 @@ abstract class CommandBase extends Command implements LoggerAwareInterface {
   protected function findIdeSshKeyOnCloud($ide_uuid): ?\stdClass {
     $acquia_cloud_client = $this->cloudApiClientService->getClient();
     $cloud_keys = $acquia_cloud_client->request('get', '/account/ssh-keys');
-    $ides_resource = new Ides($acquia_cloud_client);
-    $ide = $ides_resource->get($ide_uuid);
+    $ide = (object)["uuid" => $ide_uuid, "label" => getenv('REMOTEIDE_LABEL')];
     $ssh_key_label = SshKeyCommandBase::getIdeSshKeyLabel($ide);
     foreach ($cloud_keys as $cloud_key) {
       if ($cloud_key->label === $ssh_key_label) {

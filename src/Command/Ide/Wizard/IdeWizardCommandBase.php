@@ -58,11 +58,7 @@ abstract class IdeWizardCommandBase extends SshKeyCommandBase {
     $this->publicSshKeyFilepath = $this->privateSshKeyFilepath . '.pub';
 
     $acquia_cloud_client = $this->cloudApiClientService->getClient();
-    $ides_resource = new Ides($acquia_cloud_client);
-    $this->ide = (object) [
-      "uuid" => $this->ideUuid,
-      "label" => getenv('REMOTEIDE_LABEL')
-    ];
+    $this->ide = (object)["uuid" => $this->ideUuid, "label" => getenv('REMOTEIDE_LABEL')];
   }
 
   /**
